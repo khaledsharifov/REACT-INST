@@ -2,12 +2,23 @@ import "./App.css";
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
+import Profile from "./pages/Profile/Profile";
 import Nothing from "./pages/Nothing/Nothing";
+import Login from "./LogIn/Login";
+import SignUp from "./SignUp/SignUp";
+import Explore from "./pages/Explore/Explore";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Login/>,
+  },
+  {
+    path: "signUp",
+    element: <SignUp/>
+  },
+  {
+    path: "layout",
     element: <Layout/>,
     children: [
       {
@@ -15,8 +26,12 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
-        path: "about",
-        element:<About/>
+        path: "profile",
+        element:<Profile/>
+      },
+      {
+        path: "explore",
+        element:<Explore/>
       },
       {
         path: "*",

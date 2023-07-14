@@ -165,7 +165,7 @@ const Home = () => {
         <div className="w-[30%] pr-[100px] pt-[50px]">
           <div className="px-[30px]">
 
-            <Link to={"about"}>
+            <Link to={"profile"}>
             <div className="flex justify-between items-center  w-[100%] pb-4">
               <div className="flex gap-3 items-center">
                 <img
