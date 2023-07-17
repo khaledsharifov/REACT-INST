@@ -20,6 +20,7 @@ export default function Reels() {
             <div className="relative">
               <video
                 loop
+                muted
                 autoPlay
                 controls
                 src={vid}
@@ -50,11 +51,11 @@ export default function Reels() {
                   <p>68.3K</p>
                 </div>
                 <div className="text-center">
-                  <img src={msgg} alt="" className="w-[50%] m-auto" />
+                  <img src={msgg} alt="" className="w-[50%] m-auto bg" />
                   <p>176</p>
                 </div>
 
-                <img src={share} alt="" className="w-[70%] m-auto" />
+                <img src={share} alt="" className="w-[70%] m-auto bg" />
 
                 <BookmarkBorderOutlinedIcon
                   sx={{ fontSize: "30px", margin: "auto" }}
@@ -102,11 +103,11 @@ export default function Reels() {
                   <p>68.3K</p>
                 </div>
                 <div className="text-center">
-                  <img src={msgg} alt="" className="w-[50%] m-auto" />
+                  <img src={msgg} alt="" className="w-[50%] m-auto bg" />
                   <p>176</p>
                 </div>
 
-                <img src={share} alt="" className="w-[70%] m-auto" />
+                <img src={share} alt="" className="w-[70%] m-auto bg" />
 
                 <BookmarkBorderOutlinedIcon
                   sx={{ fontSize: "30px", margin: "auto" }}
