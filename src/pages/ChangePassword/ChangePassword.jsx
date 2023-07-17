@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 export default function ChangePassword() {
   return (
-    <div className="w-[100%] sm:py-8 lg:py-0">
+    <div className="w-[100%] sm:py-8 lg:py-0 overflow-hidden">
       <div className="container m-[0_auto]">
         <div className="lg:w-[100%] sm:w-[90%] lg:ml-[16%]">
           <div className="lg:p-[40px] sm:p-2">
             <div className="lg:flex   lg:border  lg:mr-[250px]">
               <div className="lg:w-[25%] lg:border-r flex flex-col justify-between">
                 <div>
-                <Link to={"/layout/editProfile"}>
+                <Link to={"/editProfile"}>
                   <p className="p-4 text-[16px] cursor-pointer hover:bg-[#f1f1f1]  ">
                     Edit prifile
                   </p>
                     </Link>
-                    <Link to={"/layout/changePassword"}>
+                    <Link to={"/changePassword"}>
                   <p className="p-4 text-[16px] cursor-pointer hover:bg-[#f1f1f1] border-l-[3px] border-[#000]">
                     Change password
                   </p>

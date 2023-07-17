@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import phone from "../assets/phone.png";
@@ -15,8 +15,6 @@ export default function Login() {
   const navigate = useNavigate();
   const login = async (e) => {
     e.preventDefault();
-    console.log(e.target["email"].value);
-    console.log(e.target["password"].value);
     let user = {
       email: e.target["email"].value,
       password: e.target["password"].value,
@@ -27,8 +25,13 @@ export default function Login() {
       console.log(data);
       saveToken(data.accessToken, true);
       navigate("/");
-    } catch (e) {}
+    } catch (e) {
+      setErrorMessage(e.response.data)
+      setTimeout(()=>{setErrorMessage("")}, 2000)
+      }
   };
+
+  const [errorMessage, setErrorMessage] = useState("")
   return (
     <div className="bg-[#fff]">
       <div className="container m-[0_auto]">
@@ -80,6 +83,8 @@ export default function Login() {
                         },
                       }}
                     />
+
+                    <span className="text-[red]">{errorMessage}</span>
 
                     <button
                       className="bg-[#4CB5F9] text-[#fff] py-[5px] w-[101%] mt-3 font-[500] rounded-[8px]"

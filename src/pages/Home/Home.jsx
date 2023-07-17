@@ -20,7 +20,7 @@ const Home = () => {
     <div className=" lg:ml-[20%] sm:ml-0  overflow-hidden">
       <div className="container m-[0_auto] gap-10 flex ">
         <div className="lg:w-[60%] sm:w-[100%] ">
-          <div className="flex gap-[5px] lg:w-[110%] ls:w-[80%] sm:w-[180%] lm:w-[150%] md:w-[100%] py-[50px] justify-between m-auto">
+          <div className="flex gap-[5px] lg:w-[90%] ls:w-[80%] sm:w-[180%] lm:w-[150%] md:w-[100%] py-[50px] justify-between m-auto">
             <SliderHistory />
           </div>
           <div className="w-[100%] m-auto">

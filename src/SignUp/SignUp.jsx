@@ -18,7 +18,7 @@ export default function SignUp() {
       email: e.target["email"].value,
       name: e.target["name"].value,
       username: e.target["username"].value,
-      password: e.target["password"].value,
+      password:  e.target["password"].value,
     };
 
     try {

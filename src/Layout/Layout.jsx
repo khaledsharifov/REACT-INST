@@ -76,13 +76,13 @@ const Layout = () => {
 
       <div className="navbar  sm:pt-6 lg:pt-0">
         <div className="w-[16%] px-4 border-r h-[100vh] fixed left-0  bg-[#fff] z-10 sm:hidden lg:block">
-          <Link to={"/layout"}>
+          <Link to={"/"}>
             <div>
               <img src={logo} alt="" className="w-[110px] py-8" />
             </div>
           </Link>
           <ul className="">
-            <Link to={"/layout"}>
+            <Link to={"/"}>
               <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
                 {/* <HomeIcon sx={{ fontSize: "30px" }} />  */}
                 <img src={home1} alt="" className="py-[3px]"/> Home

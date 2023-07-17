@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 export default function EditProfile() {
   return (
-    <div className="w-[100%] sm:py-8 lg:py-0">
+    <div className="w-[100%] sm:py-8 lg:py-0 overflow-hidden">
       <div className="container m-[0_auto]">
         <div className="lg:w-[100%] sm:w-[90%] lg:ml-[16%] sm:ml-auto">
           <div className="lg:p-[40px] sm:p-2  ">
             <div className="flex  sm:flex-col lg:flex-row lg:border  lg:mr-[250px] sm:mr-0">
               <div className="lg:w-[25%] sm:w-[100%] lg:border-r flex flex-col justify-between">
                 <div className=" sm:pb-8 lg:p-0">
-                    <Link to={"/layout/editProfile"}>
+                    <Link to={"/editProfile"}>
                   <p className="p-4 text-[16px] cursor-pointer hover:bg-[#f1f1f1] border-l-[3px] border-[#000]">
                     Edit prifile
                   </p>
                     </Link>
-                  <Link to={"/layout/changePassword"}>
+                  <Link to={"/changePassword"}>
                   <p className="p-4 text-[16px] cursor-pointer hover:bg-[#f1f1f1]   ">
                     Change password
                   </p>

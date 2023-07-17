@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
+console.log(import.meta.env.VITE_APP_API_URL);
 const axiosLogin = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL,
 });

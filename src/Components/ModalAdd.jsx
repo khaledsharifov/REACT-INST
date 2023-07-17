@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
+import imgAdd from "../assets/imgAdd.png"
 
 import { openModal, closeModal } from "../reducers/modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -81,14 +82,21 @@ export default function ModalAdd() {
         aria-labelledby="customized-dialog-title"
         open={modal}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-         Create a new post
+        <BootstrapDialogTitle id="customized-dialog-title" className=" text-center" onClose={handleClose}>
+         Create new post
         </BootstrapDialogTitle>
         <DialogContent dividers>
 
-            <div className='py-[20px] lg:px-[120px]'>
-                <input type="file" className='text-center' />
-                <textarea className='border p-2 my-4' name="" id="" cols="35" rows="4" placeholder='Add description... '></textarea>
+            <div className='py-[20px] lg:px-[50px]  h-[55vh] flex justify-center items-center '>
+               <div>
+
+                <img src={imgAdd} alt="" className='w-[30%] m-auto '/>
+                <p className='text-center py-6 text-[22px]'>Drag photos and videos here</p>
+              <div className='text-center'>
+              <input type="file"  className=' file:bg-[#0095F6] file:text-[#fff] file:border-none file:px-5 file:py-[5px] file:rounded-[5px]'/>
+              </div>
+                {/* <textarea className='border p-2 my-4' name="" id="" cols="35" rows="4" placeholder='Add description... '></textarea> */}
+               </div>
             </div>
 
         </DialogContent>

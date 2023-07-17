@@ -23,7 +23,7 @@ const About = () => {
               <div>
                 <div className="flex items-center gap-6">
                   <p className="text-[24px] sm:hidden lg:block">sharif_10021</p>
-                  <Link to={"/layout/editProfile"}>
+                  <Link to={"/editProfile"}>
                   <button className="bg-[#eaeaea] px-4 py-1 rounded-[6px]  sm:hidden lg:block">
                     Edit profile
                   </button>

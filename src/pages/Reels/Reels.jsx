@@ -73,7 +73,7 @@ export default function Reels() {
               <video
                 muted
                 controls
-                src={vid}
+                src={`https://cdn.mix.com.tj/download/video/9/30/621357eea16b6.mp4`}
                 className="h-[650px] rounded-[10px]"
               ></video>
               {/* <img src={img2} alt="" className="h-[650px] rounded-[10px]" /> */}
