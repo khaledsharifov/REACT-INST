@@ -60,7 +60,9 @@ const Layout = () => {
             onClick={handleClickOpen}
             sx={{ fontSize: "30px" }}
           />
+          <Link to={"reels"}>
           <OndemandVideoIcon sx={{ fontSize: "30px" }} />
+          </Link>
 
           <Link to={"profile"}>
                 <img
@@ -94,10 +96,12 @@ const Layout = () => {
                 Explore
               </li>
             </Link>
+            <Link to={"reels"}>
             <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <OndemandVideoIcon sx={{ fontSize: "30px" }} />
               Reels
             </li>
+            </Link>
             <Link to={"messages"}>
               <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
                 {/* <SendIcon sx={{ fontSize: "30px" }} /> */}

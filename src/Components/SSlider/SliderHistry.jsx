@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import profile from "../../assets/profile.jpg";
+import img2 from "../../assets/img2.jpg";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -17,15 +18,15 @@ export default function SliderHistory() {
     <>
       <Swiper
         slidesPerView={7}
-        spaceBetween={30}
+        spaceBetween={15}
         modules={[Pagination]}
-        className="mySwiper"
+        className="mySwiper "
       >
         <SwiperSlide>
         <History title="sharif_khal..." img={profile}></History>
         </SwiperSlide>
         <SwiperSlide>
-        <History title="sharif_khal..." img={profile}></History>
+        <History title="mohammad" img={img2}></History>
         </SwiperSlide>
         <SwiperSlide>
         <History title="sharif_khal..." img={profile}></History>
@@ -34,13 +35,13 @@ export default function SliderHistory() {
         <History title="sharif_khal..." img={profile}></History>
         </SwiperSlide>
         <SwiperSlide>
-        <History title="sharif_khal..." img={profile}></History>
+        <History title="sharif_kh" img={img2}></History>
         </SwiperSlide>
         <SwiperSlide>
         <History title="sharif_khal..." img={profile}></History>
         </SwiperSlide>
         <SwiperSlide>
-        <History title="sharif_khal..." img={profile}></History>
+        <History title="sharif_khal..." img={img2}></History>
         </SwiperSlide>
         <SwiperSlide>
         <History title="sharif_khal..." img={profile}></History>

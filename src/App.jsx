@@ -10,6 +10,7 @@ import Explore from "./pages/Explore/Explore";
 import Messages from "./pages/Messages/Messages";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import Reels from "./pages/Reels/Reels";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "messages",
         element:<Messages/>
+      },
+      {
+        path: "reels",
+        element:<Reels/>
       },
       {
         path: "editProfile",
