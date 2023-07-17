@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import googl from "../assets/googl.svg";
 import store from "../assets/store.svg";
@@ -7,8 +7,26 @@ import google from "../assets/google.png";
 import logo2 from "../assets/logo2.png";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
+import { axiosLogin, saveToken } from "../utils/axiosRequest";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const register = async (e) => {
+    e.preventDefault();
+
+    let user = {
+      email: e.target["email"].value,
+      name: e.target["name"].value,
+      username: e.target["username"].value,
+      password: e.target["password"].value,
+    };
+
+    try {
+      const { data } = await axiosLogin.post(`register`, user);
+      saveToken(data.accessToken, true);
+      navigate("/");
+    } catch (e) {}
+  };
   return (
     <div className="bg-[#fff]">
       <div className="container m-[0_auto]">
@@ -39,12 +57,14 @@ export default function SignUp() {
                     "& > :not(style)": { width: "34ch" },
                   }}
                   noValidate
+                  onSubmit={register}
                   autoComplete="off"
                 >
                   <div className="">
                     <TextField
                       type="email"
                       label="Email"
+                      name="email"
                       variant="filled"
                       sx={{
                         "& > :not(style)": {
@@ -56,6 +76,7 @@ export default function SignUp() {
                       }}
                     />
                     <TextField
+                      name="name"
                       label="Full name"
                       variant="filled"
                       sx={{
@@ -69,6 +90,7 @@ export default function SignUp() {
                       }}
                     />
                     <TextField
+                      name="username"
                       label="Username"
                       variant="filled"
                       sx={{
@@ -82,6 +104,7 @@ export default function SignUp() {
                       }}
                     />
                     <TextField
+                      name="password"
                       type="password"
                       label="Password"
                       variant="filled"
@@ -95,16 +118,16 @@ export default function SignUp() {
                         },
                       }}
                     />
-
                     <p className="text-[#8E8E8E] text-[12px] py-2 text-center">
-                    By signing up, you agree to our Terms , Privacy Policy and Cookies Policy .
+                      By signing up, you agree to our Terms , Privacy Policy and
+                      Cookies Policy .
                     </p>
-
-                    <Link to={"/layout"}>
-                      <button className="bg-[#4CB5F9] text-[#fff] py-[5px] w-[101%] mt-3 font-[500] rounded-[8px] mb-6">
-                        Sign Up
-                      </button>
-                    </Link>
+                    <button
+                      className="bg-[#4CB5F9] text-[#fff] py-[5px] w-[101%] mt-3 font-[500] rounded-[8px] mb-6"
+                      type="submit"
+                    >
+                      Sign Up
+                    </button>
                   </div>
                 </Box>
               </div>

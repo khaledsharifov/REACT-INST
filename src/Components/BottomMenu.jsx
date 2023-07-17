@@ -6,11 +6,11 @@ import Divider from "@mui/material/Divider";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { Link } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
+import ReportGmailerrorredOutlinedIcon from "@mui/icons-material/ReportGmailerrorredOutlined";
 import Switcher from "./Switcher/Switcher";
-
+import { destroyToken } from "../utils/axiosRequest";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -83,42 +83,59 @@ export default function BottomMenus() {
         onClose={handleClose}
       >
         <Link to={"/layout/editProfile"}>
-        <MenuItem onClick={handleClose}   sx={{
-            paddingTop: "12px",
-            paddingBottom: "12px",
-            
-          }}>
-          <SettingsOutlinedIcon/>
-          Setting
-        </MenuItem>
+          <MenuItem
+            onClick={handleClose}
+            sx={{
+              paddingTop: "12px",
+              paddingBottom: "12px",
+            }}
+          >
+            <SettingsOutlinedIcon />
+            Setting
+          </MenuItem>
         </Link>
-        <MenuItem sx={{
+        <MenuItem
+          sx={{
             paddingTop: "12px",
             paddingBottom: "12px",
-          }} onClick={handleClose} disableRipple>
-          <AccessTimeIcon/>
+          }}
+          onClick={handleClose}
+          disableRipple
+        >
+          <AccessTimeIcon />
           Your activity
         </MenuItem>
-        <MenuItem sx={{
+        <MenuItem
+          sx={{
             paddingTop: "12px",
             paddingBottom: "12px",
-          }} onClick={handleClose} disableRipple>
-          <BookmarkBorderOutlinedIcon/>
+          }}
+          onClick={handleClose}
+          disableRipple
+        >
+          <BookmarkBorderOutlinedIcon />
           Saved
         </MenuItem>
-        <MenuItem  sx={{
+        <MenuItem
+          sx={{
             paddingTop: "12px",
             paddingBottom: "12px",
-            
-          }} onClick={handleClose}  disableRipple>
-          <Switcher/>
-         <p className="pl-2"> Switch appearance</p>
+          }}
+          onClick={handleClose}
+          disableRipple
+        >
+          <Switcher />
+          <p className="pl-2"> Switch appearance</p>
         </MenuItem>
-        <MenuItem sx={{
+        <MenuItem
+          sx={{
             paddingTop: "12px",
             paddingBottom: "12px",
-          }} onClick={handleClose} disableRipple>
-          <ReportGmailerrorredOutlinedIcon/>
+          }}
+          onClick={handleClose}
+          disableRipple
+        >
+          <ReportGmailerrorredOutlinedIcon />
           Report a problem
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
@@ -134,18 +151,20 @@ export default function BottomMenus() {
         </MenuItem>
 
         <Divider sx={{ my: 0.5 }} />
-        <Link to={"/"}>
-          <MenuItem
-            sx={{
-              paddingTop: "12px",
-              paddingBottom: "12px",
-              paddingRight: "200px",
-            }}
-            disableRipple
-          >
-            Log out
-          </MenuItem>
-        </Link>
+
+        <MenuItem
+          sx={{
+            paddingTop: "12px",
+            paddingBottom: "12px",
+            paddingRight: "200px",
+          }}
+          onClick={() => {
+            destroyToken();
+          }}
+          disableRipple
+        >
+          Log out
+        </MenuItem>
       </StyledMenu>
     </div>
   );

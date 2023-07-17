@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import phone from "../assets/phone.png";
 import googl from "../assets/googl.svg";
@@ -9,11 +9,25 @@ import logo2 from "../assets/logo2.png";
 import { TextField } from "@mui/material";
 
 import Box from "@mui/material/Box";
+import { axiosLogin, saveToken } from "../utils/axiosRequest";
 
 export default function Login() {
+  const navigate = useNavigate();
   const login = async (e) => {
     e.preventDefault();
-    console.log(e.target);
+    console.log(e.target["email"].value);
+    console.log(e.target["password"].value);
+    let user = {
+      email: e.target["email"].value,
+      password: e.target["password"].value,
+    };
+
+    try {
+      const { data } = await axiosLogin.post(`login`, user);
+      console.log(data);
+      saveToken(data.accessToken, true);
+      navigate("/");
+    } catch (e) {}
   };
   return (
     <div className="bg-[#fff]">
@@ -41,6 +55,7 @@ export default function Login() {
                       type="email"
                       label="Username, or mail"
                       variant="filled"
+                      name="email"
                       sx={{
                         "& > :not(style)": {
                           width: "37ch",
@@ -52,6 +67,7 @@ export default function Login() {
                     />
                     <TextField
                       type="password"
+                      name="password"
                       label="Password"
                       variant="filled"
                       sx={{
@@ -93,7 +109,7 @@ export default function Login() {
               </div>
 
               <div className="bg-[#fff] px-[40px] py-4 border-[1px] border-[#cccccc] mt-2 text-center">
-                <Link to={"signUp"}>
+                <Link to={"/signUp"}>
                   <p>
                     You don’t an account?{" "}
                     <span className="text-[#0095F6] font-[600]">Sign Up</span>

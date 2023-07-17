@@ -1,5 +1,5 @@
 import "./App.css";
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
@@ -11,62 +11,72 @@ import Messages from "./pages/Messages/Messages";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import Reels from "./pages/Reels/Reels";
+import AuthCheck from "./utils/AuthCheck";
+import ProtectRoute from "./utils/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: (
+      <AuthCheck>
+        <Login />
+      </AuthCheck>
+    ),
+  },
+  {
+    path: "/signUp",
+    element: (
+      <AuthCheck>
+        <SignUp />
+      </AuthCheck>
+    ),
+  },
+  {
     path: "/",
-    element: <Login/>,
-  },
-  {
-    path: "signUp",
-    element: <SignUp/>
-  },
-  {
-    path: "layout",
-    element: <Layout/>,
+    element: (
+      <ProtectRoute>
+        <Layout />
+      </ProtectRoute>
+    ),
     children: [
       {
-        index:true,
-        element: <Home/>
+        index: true,
+        element: <Home />,
       },
       {
         path: "profile",
-        element:<Profile/>
+        element: <Profile />,
       },
       {
         path: "explore",
-        element:<Explore/>
+        element: <Explore />,
       },
       {
         path: "messages",
-        element:<Messages/>
+        element: <Messages />,
       },
       {
         path: "reels",
-        element:<Reels/>
+        element: <Reels />,
       },
       {
         path: "editProfile",
-        element:<EditProfile/>
+        element: <EditProfile />,
       },
       {
         path: "changePassword",
-        element:<ChangePassword/>
+        element: <ChangePassword />,
       },
       {
         path: "*",
-        element: <Nothing/>
-      }
-    ]
-  }
-])
+        element: <Nothing />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <RouterProvider router={router}/>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
-
-
