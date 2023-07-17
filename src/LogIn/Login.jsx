@@ -15,7 +15,7 @@ export default function Login() {
     <div className="bg-[#fff]">
       <div className="container m-[0_auto]">
         <div className="flex justify-center pt-[30px]">
-          <div className="flex ">
+          <div className="flex sm:flex-col lg:flex-row ">
             <div>
               <img src={phone} alt="" />
             </div>

@@ -7,6 +7,9 @@ import Nothing from "./pages/Nothing/Nothing";
 import Login from "./LogIn/Login";
 import SignUp from "./SignUp/SignUp";
 import Explore from "./pages/Explore/Explore";
+import Messages from "./pages/Messages/Messages";
+import EditProfile from "./pages/EditProfile/EditProfile";
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
         element:<Explore/>
       },
       {
+        path: "messages",
+        element:<Messages/>
+      },
+      {
+        path: "editProfile",
+        element:<EditProfile/>
+      },
+      {
+        path: "changePassword",
+        element:<ChangePassword/>
+      },
+      {
         path: "*",
         element: <Nothing/>
       }
@@ -48,3 +63,5 @@ function App() {
 }
 
 export default App;
+
+

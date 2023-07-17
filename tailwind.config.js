@@ -8,7 +8,7 @@ export default {
 
       ml: "1250px",
 
-      lg: "1000px" ,
+      ls: "1000px" ,
 
       lg: "850px",
 
@@ -16,7 +16,9 @@ export default {
 
       lm: "500px",
 
-      sm: "360px" ,
+      ms: "400px",
+
+      sm: "340px" ,
     },
     extend: {},
   },

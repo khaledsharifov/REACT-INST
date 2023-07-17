@@ -14,6 +14,10 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
+import share from "../../assets/share.svg"
+import home1 from "../../assets/home1.svg"
+import exp from "../../assets/exp.svg"
+
 import List from "@mui/material/List";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -46,25 +50,28 @@ export default function SideBar() {
       <List className="m-0 border-r">
         <div className="w-[100%] px-2  h-[100vh]  m-auto ">
           <div className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] mt-[15px] mb-[25px] text-[15px]">
-            <InstagramIcon sx={{ fontSize: "28px" }} />
+            <InstagramIcon sx={{ fontSize: "30px" }} />
           </div>
           <ul className="m-0">
             <Link to={"/layout"}>
               <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
-                <HomeIcon sx={{ fontSize: "30px" }} />{" "}
+                {/* <HomeIcon sx={{ fontSize: "30px" }} />{" "} */}
+                <img src={home1} alt="" className="w-[85%] m-auto"/> 
               </li>
             </Link>
             <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <SearchIcon sx={{ fontSize: "30px" }} />
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
-              <ExploreIcon sx={{ fontSize: "30px" }} />
+              {/* <ExploreIcon sx={{ fontSize: "30px" }} /> */}
+              <img src={exp} alt=""  className="m-auto w-[90%]"/>
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <OndemandVideoIcon sx={{ fontSize: "30px" }} />
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
-              <SendIcon sx={{ fontSize: "30px" }} />
+              {/* <SendIcon sx={{ fontSize: "30px" }} /> */}
+              <img src={share} alt="" className="m-auto w-[90%]"/>
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <FavoriteBorderIcon sx={{ fontSize: "30px" }} />

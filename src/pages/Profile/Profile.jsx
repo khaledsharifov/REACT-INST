@@ -6,35 +6,46 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsIcon from "@mui/icons-material/Apps";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <div className="ml-[16%]">
+    <div className="lg:ml-[16%] overflow-hidden sm:pt-6 lg:pt-0">
       <div className="container m-[0_auto]">
-        <div className="w-[75%] m-auto">
+        <div className="lg:w-[75%] sm:w-[90%] m-auto">
           <div className=" border-b py-[40px] w-[100%] ">
-            <div className="flex items-center justify-center pr-[100px] gap-[100px] ">
+            <div className="flex items-center justify-center lg:pr-[100px] sm:pr-0 sm:gap-4 lg:gap-[100px] ">
               <img
                 src={profile}
                 alt=""
-                className=" w-[160px] h-[160px] rounded-[50%]"
+                className=" lg:w-[160px] lg:h-[160px]  sm:w-[60px] sm:h-[60px] rounded-[50%]"
               />
               <div>
                 <div className="flex items-center gap-6">
-                  <p className="text-[24px]">sharif_10021</p>
-                  <button className="bg-[#eaeaea] px-4 py-1 rounded-[6px]">
+                  <p className="text-[24px] sm:hidden lg:block">sharif_10021</p>
+                  <Link to={"/layout/editProfile"}>
+                  <button className="bg-[#eaeaea] px-4 py-1 rounded-[6px]  sm:hidden lg:block">
                     Edit profile
                   </button>
+                  </Link>
+                  <div className=" sm:hidden lg:block">
                   <SettingsOutlinedIcon sx={{ fontSize: "30px" }} />
+                  </div>
                 </div>
-                <div className="flex gap-8 py-4">
+                <div className="flex items-center sm:gap-4 lg:gap-8 py-4">
                   <p>0 posts</p>
                   <p>12 followers</p>
                   <p>223 following</p>
                 </div>
-                <p>sharif</p>
+                <p className="lg:block sm:hidden">sharif</p>
+
               </div>
             </div>
+                <Link to={"/layout/editProfile"}>
+                  <button className="bg-[#eaeaea] w-[100%] mt-8 px-4 py-1 rounded-[6px]  lg:hidden">
+                    Edit profile
+                  </button>
+                  </Link>
           </div>
 
           <div className="flex gap-10 justify-center py-4 text-[13px]">
