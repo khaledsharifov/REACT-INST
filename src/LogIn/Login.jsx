@@ -11,6 +11,10 @@ import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export default function Login() {
+  const login = async (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
   return (
     <div className="bg-[#fff]">
       <div className="container m-[0_auto]">
@@ -29,11 +33,12 @@ export default function Login() {
                     "& > :not(style)": { width: "34ch" },
                   }}
                   noValidate
+                  onSubmit={login}
                   autoComplete="off"
                 >
                   <div className="">
                     <TextField
-                    type="email"
+                      type="email"
                       label="Username, or mail"
                       variant="filled"
                       sx={{
@@ -60,57 +65,68 @@ export default function Login() {
                       }}
                     />
 
-                    <Link to={"layout"}>
-                    <button className="bg-[#4CB5F9] text-[#fff] py-[5px] w-[101%] mt-3 font-[500] rounded-[8px]">Log in</button>
-                    </Link>
+                    <button
+                      className="bg-[#4CB5F9] text-[#fff] py-[5px] w-[101%] mt-3 font-[500] rounded-[8px]"
+                      type="submit"
+                    >
+                      Log in
+                    </button>
 
                     <div className="flex items-center py-3">
-                    <div className="h-[1px] bg-[#D9D9D9] w-[100%]"></div>
-                        <span  className="px-2 text-[#959595]">OR</span>
-                        <div className="h-[1px] bg-[#D9D9D9] w-[100%]"></div>
+                      <div className="h-[1px] bg-[#D9D9D9] w-[100%]"></div>
+                      <span className="px-2 text-[#959595]">OR</span>
+                      <div className="h-[1px] bg-[#D9D9D9] w-[100%]"></div>
                     </div>
 
                     <div className="bg-[#EFEFEF] flex items-center w-[100%] py-2 rounded-[60px] justify-center gap-4">
-                        <img src={google} alt="" />
-                        <p className="font-[600] text-[13px]">Continue with google</p>
+                      <img src={google} alt="" />
+                      <p className="font-[600] text-[13px]">
+                        Continue with google
+                      </p>
                     </div>
 
-                    <p className="text-[#0095F6] text-center text-[13px] mt-4">You forgot the password?</p>
+                    <p className="text-[#0095F6] text-center text-[13px] mt-4">
+                      You forgot the password?
+                    </p>
                   </div>
                 </Box>
               </div>
 
               <div className="bg-[#fff] px-[40px] py-4 border-[1px] border-[#cccccc] mt-2 text-center">
-             <Link to={"signUp"}>
-             <p>You don’t an account? <span className="text-[#0095F6] font-[600]">Sign Up</span></p>
-             </Link>
+                <Link to={"signUp"}>
+                  <p>
+                    You don’t an account?{" "}
+                    <span className="text-[#0095F6] font-[600]">Sign Up</span>
+                  </p>
+                </Link>
               </div>
 
               <div className="text-center">
                 <p className="py-3">Download the application.</p>
                 <div className="flex gap-2 justify-center">
-                    <img src={store} alt="" />
-                    <img src={googl} alt="" />
+                  <img src={store} alt="" />
+                  <img src={googl} alt="" />
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
-        
+
         <div className="py-[40px]">
-            <p className="text-center text-[13px] text-[#878787]">
-              Meta  &nbsp;  About &nbsp; Blog &nbsp;  Jobs  &nbsp; Help &nbsp;  API &nbsp;  Privacy  &nbsp; Terms  &nbsp; Top Accounts &nbsp;  Locations
-              &nbsp;  Instagram  &nbsp; Lite  &nbsp; Threads  &nbsp; Contact Uploading & Non-Users &nbsp;  Meta Verified
-            </p>
-            <div className="flex items-center gap-4  justify-center pt-4 text-[13px] text-[#878787]">
-              <select name="" id="">
-                <option value="">English</option>
-                <option value="">Russia</option>
-              </select>
+          <p className="text-center text-[13px] text-[#878787]">
+            Meta &nbsp; About &nbsp; Blog &nbsp; Jobs &nbsp; Help &nbsp; API
+            &nbsp; Privacy &nbsp; Terms &nbsp; Top Accounts &nbsp; Locations
+            &nbsp; Instagram &nbsp; Lite &nbsp; Threads &nbsp; Contact Uploading
+            & Non-Users &nbsp; Meta Verified
+          </p>
+          <div className="flex items-center gap-4  justify-center pt-4 text-[13px] text-[#878787]">
+            <select name="" id="">
+              <option value="">English</option>
+              <option value="">Russia</option>
+            </select>
             <p>© 2023 Instagram from Meta</p>
-            </div>
           </div>
+        </div>
       </div>
     </div>
   );

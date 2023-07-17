@@ -4,8 +4,6 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import msgg from "../../assets/mess.svg";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 
-import img2 from "../../assets/img2.jpg";
-import vid from "../../assets/vid.mp4";
 import share from "../../assets/share.svg";
 import ModalPost from "../../Components/ModalPost";
 
@@ -23,7 +21,7 @@ export default function Reels() {
                 muted
                 autoPlay
                 controls
-                src={vid}
+                src={`https://cdn.mix.com.tj/download/video/9/30/621357eea16b6.mp4`}
                 className="h-[650px] rounded-[10px]"
               ></video>
               {/* <img src={img3} alt="" className="h-[650px] rounded-[10px]" /> */}
@@ -40,7 +38,7 @@ export default function Reels() {
                 </div>
                 <p className="text-[#fff] py-4">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Blanditiis nesciunt  doloremque!{" "}
+                  Blanditiis nesciunt doloremque!{" "}
                 </p>
               </div>
             </div>
@@ -72,8 +70,7 @@ export default function Reels() {
 
           <div className="lg:w-[35%] sm:w-[100%]  flex items-end relative">
             <div className="relative">
-            <video
-                
+              <video
                 muted
                 controls
                 src={vid}
