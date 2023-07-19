@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import profile from "../../assets/profile.jpg";
@@ -10,10 +10,62 @@ import "../../App.css";
 import { Link } from "react-router-dom";
 import Post from "../../Components/Post";
 import SliderHistory from "../../Components/SSlider/SliderHistry";
+import { axiosRequest, getToken } from "../../utils/axiosRequest";
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const toggleLike = async (id) => {
+    let post = posts.find((p) => p.id === id);
+    if (post.likedBy.includes(+getToken().sub)) {
+      post.likes--;
+      post.likedBy = post.likedBy.filter((elem) => elem !== +getToken().sub);
+    } else {
+      post.likes++;
+      post.likedBy = [...post.likedBy, +getToken().sub];
+    }
+
+    try {
+      const { data } = await axiosRequest.patch(`posts/${id}`, post);
+      getPosts();
+    } catch (e) {}
+  };
+
+  const getPosts = async () => {
+    try {
+      const { data } = await axiosRequest.get("posts");
+
+      setPosts(data);
+    } catch (err) {}
+  };
+
+  const addComment = async (id, comment) => {
+    const post = posts.find((p) => p.id === id);
+    post.comments = [
+      ...post.comments,
+      {
+        userId: +getToken().sub,
+        comment: comment,
+      },
+    ];
+    try {
+      const { data } = await axiosRequest.patch(`posts/${id}`, post);
+      getPosts();
+    } catch (e) {}
+  };
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axiosRequest.get("users");
+      setUsers(data);
+    } catch (e) {}
+  };
+
   useEffect(() => {
     AOS.init();
+    getPosts();
+    getUsers();
   }, []);
 
   return (
@@ -24,17 +76,30 @@ const Home = () => {
             <SliderHistory />
           </div>
           <div className="w-[100%] m-auto">
-            <Post
-              img={img2}
-              desc=" Liquid Animation With Html Css and JavaScript With full
+            {posts.length > 0 ? (
+              posts.map((elem) => {
+                return (
+                  <Post
+                    id={elem.id}
+                    img={elem.media}
+                    desc={elem.description}
+                    key={elem.id}
+                    likes={elem.likes}
+                    likedBy={elem.likedBy}
+                    comments={elem.comments}
+                    toggleLike={() => toggleLike(elem.id)}
+                    addComment={addComment}
+                    users={users}
+                  />
+                );
+              })
+            ) : (
+              <Post
+                img={img2}
+                desc=" Liquid Animation With Html Css and JavaScript With full
           Source Code .. 🔥🔥🔥"
-            ></Post>
-
-            <Post
-              img={img3}
-              desc=" Liquid Animation With Html Css and JavaScript With full
-          Source Code .. 🔥🔥🔥"
-            ></Post>
+              ></Post>
+            )}
           </div>
         </div>
 
