@@ -96,3 +96,9 @@
 .bg{
   filter: drop-shadow(1px 1px 0px);
 }
+.element::-webkit-scrollbar {
+  width: 0;
+}
+.element{
+  max-height: 120px;
+}

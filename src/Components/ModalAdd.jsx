@@ -130,14 +130,6 @@ export default function ModalAdd() {
         <DialogContent dividers>
           <div className="py-[20px] lg:px-[50px]  h-[55vh] flex justify-center items-center ">
             <div>
-              <TextField
-                placeholder="title"
-                sx={{ mb: 2 }}
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              />
               <img src={imgAdd} alt="" className="w-[30%] m-auto " />
               <p className="text-center py-6 text-[22px]">
                 Drag photos and videos here
@@ -151,15 +143,26 @@ export default function ModalAdd() {
                   }}
                   className=" file:bg-[#0095F6] file:text-[#fff] file:border-none file:px-5 file:py-[5px] file:rounded-[5px]"
                 />
+
+                <div className="w-[80%] m-auto flex flex-col gap-2 pt-2">
+                <TextField
+                  placeholder="title"
+                  sx={{ width: "100%"}}
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                />
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="border p-2 w-[100%]"
+                  cols="35"
+                  rows="3"
+                  placeholder="Add description... "
+                ></textarea>
+                </div>
               </div>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="border p-2 my-4"
-                cols="35"
-                rows="4"
-                placeholder="Add description... "
-              ></textarea>
             </div>
           </div>
         </DialogContent>

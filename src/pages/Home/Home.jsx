@@ -4,13 +4,13 @@ import "aos/dist/aos.css";
 import profile from "../../assets/profile.jpg";
 import us from "../../assets/uspekh.jpg";
 import img2 from "../../assets/img2.jpg";
-import img3 from "../../assets/uspekh.jpg";
 
 import "../../App.css";
 import { Link } from "react-router-dom";
 import Post from "../../Components/Post";
 import SliderHistory from "../../Components/SSlider/SliderHistry";
 import { axiosRequest, getToken } from "../../utils/axiosRequest";
+import { Avatar } from "antd";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -47,8 +47,18 @@ const Home = () => {
       {
         userId: +getToken().sub,
         comment: comment,
+        commentId: new Date().getTime(),
       },
     ];
+    try {
+      const { data } = await axiosRequest.patch(`posts/${id}`, post);
+      getPosts();
+    } catch (e) {}
+  };
+
+  const deleteComment = async (id, commentId) => {
+    const post = posts.find((p) => p.id === id);
+    post.comments = post.comments.filter((el) => el.commentId != commentId);
     try {
       const { data } = await axiosRequest.patch(`posts/${id}`, post);
       getPosts();
@@ -73,15 +83,18 @@ const Home = () => {
       <div className="container m-[0_auto] gap-10 flex ">
         <div className="lg:w-[60%] sm:w-[100%] ">
           <div className="flex gap-[5px] lg:w-[90%] ls:w-[80%] sm:w-[180%] lm:w-[150%] md:w-[100%] py-[50px] justify-between m-auto">
-            <SliderHistory />
+            <SliderHistory  />
           </div>
           <div className="w-[100%] m-auto">
             {posts.length > 0 ? (
               posts.map((elem) => {
                 return (
                   <Post
+                    date={elem.date}
+                    userId={elem.userId}
                     id={elem.id}
-                    img={elem.media}
+                    imgg={elem.media}
+                    title={elem.title}
                     desc={elem.description}
                     key={elem.id}
                     likes={elem.likes}
@@ -89,6 +102,7 @@ const Home = () => {
                     comments={elem.comments}
                     toggleLike={() => toggleLike(elem.id)}
                     addComment={addComment}
+                    deleteComment={deleteComment}
                     users={users}
                   />
                 );
@@ -108,14 +122,30 @@ const Home = () => {
             <Link to={"profile"}>
               <div className="flex justify-between items-center  w-[100%] pb-4">
                 <div className="flex gap-3 items-center">
-                  <img
-                    src={profile}
-                    alt=""
-                    className="w-[45px] h-[45px] rounded-[50px]"
-                  />
+                  {users.map((el) =>
+                    el.id == +getToken().sub ? (
+                      <div>
+                          <img
+                          src={`${import.meta.env.VITE_APP_FILES_URL}${
+                            el.avatar
+                          }`}
+                          alt=""
+                          className="w-[45px] h-[45px] rounded-[50px]"
+                        />
+
+                      </div>
+                    ) : null
+                  )}
                   <div>
-                    <p>sharif_10021</p>
-                    <p className=" text-[gray]">sharif</p>
+                    <p>
+                      {users?.find((user) => user.id === +getToken().sub)?.name}
+                    </p>
+                    <p className=" text-[gray]">
+                      {
+                        users?.find((user) => user.id === +getToken().sub)
+                          ?.username
+                      }
+                    </p>
                   </div>
                 </div>
 
@@ -128,86 +158,33 @@ const Home = () => {
               <p className=" text-[12px] font-[600]">See all</p>
             </div>
 
+            {users.length>0 ? (
+          users.map((el) =>{
+            return (
+              <Link to={`/user/${el.id}`}>
             <div className="flex justify-between items-center  w-[100%] pb-4">
               <div className="flex gap-3 items-center">
-                <img
-                  src={profile}
-                  alt=""
-                  className="w-[45px] h-[45px] rounded-[50px]"
-                />
+              <div >
+              <img  className="w-[40px] h-[40px] rounded-[50px]" src={`${import.meta.env.VITE_APP_FILES_URL}${el.avatar}`} alt="" />
+            </div>
                 <div>
-                  <p>khalid_kh</p>
-                  <p className=" text-[gray]">sharif</p>
+                <p className="font-[700]">{el.name}</p>
+                <p>{el.username}</p>
                 </div>
               </div>
 
               <p className="font-[600] text-[#4187ff] text-[12px]">Follow</p>
             </div>
+            </Link>
+            )
+          }
+          ) 
 
-            <div className="flex justify-between items-center  w-[100%] pb-4">
-              <div className="flex gap-3 items-center">
-                <img
-                  src={us}
-                  alt=""
-                  className="w-[45px] h-[45px] rounded-[50px]"
-                />
-                <div>
-                  <p>sharif_1sfs1</p>
-                  <p className=" text-[gray]">sharif</p>
-                </div>
-              </div>
+        ):null}
 
-              <p className="font-[600] text-[#4187ff] text-[12px]">Follow</p>
-            </div>
 
-            <div className="flex justify-between items-center  w-[100%] pb-4">
-              <div className="flex gap-3 items-center">
-                <img
-                  src={profile}
-                  alt=""
-                  className="w-[45px] h-[45px] rounded-[50px]"
-                />
-                <div>
-                  <p>mohammad_52 </p>
-                  <p className=" text-[gray]">sharif</p>
-                </div>
-              </div>
 
-              <p className="font-[600] text-[#4187ff] text-[12px]">Follow</p>
-            </div>
-
-            <div className="flex justify-between items-center  w-[100%] pb-4">
-              <div className="flex gap-3 items-center">
-                <img
-                  src={us}
-                  alt=""
-                  className="w-[45px] h-[45px] rounded-[50px]"
-                />
-                <div>
-                  <p>wonder_tj</p>
-                  <p className=" text-[gray]">sharif</p>
-                </div>
-              </div>
-
-              <p className="font-[600] text-[#4187ff] text-[12px]">Follow</p>
-            </div>
-
-            <div className="flex justify-between items-center  w-[100%] pb-4">
-              <div className="flex gap-3 items-center">
-                <img
-                  src={profile}
-                  alt=""
-                  className="w-[45px] h-[45px] rounded-[50px]"
-                />
-                <div>
-                  <p>intelect</p>
-                  <p className=" text-[gray]">sharif</p>
-                </div>
-              </div>
-
-              <p className="font-[600] text-[#4187ff] text-[12px]">Follow</p>
-            </div>
-
+        
             <p className="text-[12px] text-[#b7b7b7] pt-8">
               About. Help. Press. API. Jobs. Privacy. Terms
             </p>

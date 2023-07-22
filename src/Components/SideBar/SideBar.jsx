@@ -14,16 +14,33 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
-import share from "../../assets/share.svg"
-import home1 from "../../assets/home1.svg"
-import exp from "../../assets/exp.svg"
+import share from "../../assets/share.svg";
+import home1 from "../../assets/home1.svg";
+import exp from "../../assets/exp.svg";
 
 import List from "@mui/material/List";
 
 import SearchIcon from "@mui/icons-material/Search";
+import { axiosRequest } from "../../utils/axiosRequest";
 
 export default function SideBar() {
+  const [users, setUsers] = React.useState([]);
+
   const [state, setState] = React.useState(false);
+
+  const [search, setSearch] = React.useState("");
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axiosRequest.get(`users/?q=${search}`);
+      setUsers(data);
+      setSearch("")
+    } catch (e) {}
+  };
+
+  // React.useEffect(() => {
+  //   getUsers();
+  // }, []);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -56,7 +73,7 @@ export default function SideBar() {
             <Link to={"/layout"}>
               <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
                 {/* <HomeIcon sx={{ fontSize: "30px" }} />{" "} */}
-                <img src={home1} alt="" className="w-[85%] m-auto"/> 
+                <img src={home1} alt="" className="w-[85%] m-auto" />
               </li>
             </Link>
             <li className="flex items-center gap-4 py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
@@ -64,14 +81,14 @@ export default function SideBar() {
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               {/* <ExploreIcon sx={{ fontSize: "30px" }} /> */}
-              <img src={exp} alt=""  className="m-auto w-[90%]"/>
+              <img src={exp} alt="" className="m-auto w-[90%]" />
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <OndemandVideoIcon sx={{ fontSize: "30px" }} />
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               {/* <SendIcon sx={{ fontSize: "30px" }} /> */}
-              <img src={share} alt="" className="m-auto w-[90%]"/>
+              <img src={share} alt="" className="m-auto w-[90%]" />
             </li>
             <li className=" py-[10px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
               <FavoriteBorderIcon sx={{ fontSize: "30px" }} />
@@ -101,17 +118,22 @@ export default function SideBar() {
             <div className="flex justify-between items-center">
               <p className="text-[25px] font-[600] pt-4 pb-8">Search</p>
               <div className="pt-4 pb-8">
-                <CloseIcon onClick={()=>setState(false)} className=" cursor-pointer text-[#707070] hover:text-[#000]"/>
+                <CloseIcon
+                  onClick={() => setState(false)}
+                  className=" cursor-pointer text-[#707070] hover:text-[#000]"
+                />
               </div>
             </div>
             <div className=" relative">
               <input
+                value={search}
+                onChange={(ev) => setSearch(ev.target.value)}
                 type="text"
                 placeholder="Search"
-                className="bg-[#EFEFEF] w-[100%] pl-10 py-[10px] rounded-[7px]"
+                className="bg-[#EFEFEF] w-[100%] pl-4 pr-14 py-[10px] rounded-[7px]"
               />
-              <div className=" absolute top-[10px] left-2 text-[#969696]">
-                <SearchIcon />
+              <div className=" absolute top-[10px] right-4 text-[#969696] border-[#969696] border-l pl-4">
+                <SearchIcon className=" cursor-pointer hover:text-[#000]  text-[20px]" onClick={getUsers} />
               </div>
             </div>
           </div>
@@ -119,8 +141,31 @@ export default function SideBar() {
 
         <div className="flex justify-between w-[90%] m-auto py-5">
           <p className="font-[600]">Resent</p>
-          <p className="text-[#0095F6]">Clear all</p>
+          <p className="text-[#0095F6] cursor-pointer" onClick={()=>setUsers("")}>Clear all</p>
         </div>
+
+        {users.length>0 ? (
+          users.map((el) =>{
+            return (
+              <Link to={`/user/${el.id}`}>
+              <div className="px-4 hover:bg-[#eaeaea] cursor-pointer">
+              <div className="flex items-center gap-2 py-2">
+              <div >
+              <img  className="w-[40px] h-[40px] rounded-[50px]" src={`${import.meta.env.VITE_APP_FILES_URL}${el.avatar}`} alt="" />
+            </div>
+                <div>
+                  <p className="font-[700]">{el.name}</p>
+                  <p>{el.username}</p>
+                </div>
+              </div>
+            </div>
+            </Link>
+            )
+          }
+          ) 
+
+        ):null}
+
       </List>
     </Box>
   );

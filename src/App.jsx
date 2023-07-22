@@ -4,8 +4,7 @@ import Layout from "./Layout/Layout";
 import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
 import Nothing from "./pages/Nothing/Nothing";
-import Login from "./LogIn/Login";
-import SignUp from "./SignUp/SignUp";
+
 import Explore from "./pages/Explore/Explore";
 import Messages from "./pages/Messages/Messages";
 import EditProfile from "./pages/EditProfile/EditProfile";
@@ -13,6 +12,11 @@ import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import Reels from "./pages/Reels/Reels";
 import AuthCheck from "./utils/AuthCheck";
 import ProtectRoute from "./utils/ProtectedRoute";
+import SignUp from "./pages/SignUp/SignUp";
+import Login from "./pages/LogIn/Login";
+import User from "./pages/User/UserProfile";
+import UserProfile from "./pages/User/UserProfile";
+
 
 const router = createBrowserRouter([
   {
@@ -46,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "user/:userId",
+        element: <UserProfile />,
       },
       {
         path: "explore",

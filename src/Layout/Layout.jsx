@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, Link, useLocation, useParams } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import profile from "../assets/profile.jpg";
 import HomeIcon from "@mui/icons-material/Home";
@@ -19,11 +19,26 @@ import { openModal, closeModal } from "../reducers/modal";
 import { useDispatch, useSelector } from "react-redux";
 import ModalAdd from "../Components/ModalAdd";
 
+
+
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { axiosRequest, getToken } from "../utils/axiosRequest";
 
 const Layout = () => {
+  const [users, setUsers] = useState([]);
   const modal = useSelector(({ modal }) => modal.modal1);
   const dispatch = useDispatch();
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axiosRequest.get("users");
+      setUsers(data);
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleClickOpen = () => {
     dispatch(openModal(true));
@@ -117,11 +132,20 @@ const Layout = () => {
 
             <Link to={"profile"}>
               <li className="flex items-center gap-4 py-[12px] rounded-[12px] px-3 cursor-pointer hover:bg-[#eee] my-[6px] text-[15px]">
-                <img
-                  src={profile}
-                  alt=""
-                  className="w-[25px] h-[25px] rounded-[50px]"
-                />
+              {users.map((el) =>
+                    el.id == +getToken().sub ? (
+                      <div>
+                          <img
+                          src={`${import.meta.env.VITE_APP_FILES_URL}${
+                            el.avatar
+                          }`}
+                          alt=""
+                          className="w-[25px] h-[25px] rounded-[50px]"
+                        />
+
+                      </div>
+                    ) : null
+                  )}
                 Profile
               </li>
             </Link>

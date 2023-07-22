@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
-
-import profile from "../../assets/profile.jpg";
-import cam from "../../assets/cam.jpg";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AppsIcon from "@mui/icons-material/Apps";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { axiosRequest, getToken } from "../../utils/axiosRequest";
 import ExploreGrid from "../../Components/Explore";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 
-const About = () => {
+import cam from "../../assets/cam.jpg"
+
+export default function UserProfile() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [cnt, setCnt] = useState(null)
+  console.log(cnt);
+
+  const userIdFromParam = useParams().userId;
 
   const getPosts = async () => {
     try {
@@ -43,7 +45,7 @@ const About = () => {
           <div className=" border-b py-[40px] w-[100%] ">
             <div className="flex items-center justify-center lg:pr-[100px] sm:pr-0 sm:gap-4 lg:gap-[100px] ">
               {users.map((el) =>
-                el.id == +getToken().sub ? (
+                el.id == userIdFromParam ? (
                   <div>
                     <img
                       src={`${import.meta.env.VITE_APP_FILES_URL}${el.avatar}`}
@@ -57,31 +59,33 @@ const About = () => {
               <div>
                 <div className="flex items-center gap-6">
                   <p className="text-[24px] sm:hidden lg:block">
-                    {users?.find((user) => user.id === +getToken().sub)?.name}
+                    {users?.find((user) => user.id == userIdFromParam)?.name}
                   </p>
-                  <Link to={"/editProfile"}>
-                    <button className="bg-[#eaeaea] px-4 py-1 rounded-[6px]  sm:hidden lg:block">
-                      Edit profile
-                    </button>
-                  </Link>
-                  <div className=" sm:hidden lg:block">
-                    <SettingsOutlinedIcon sx={{ fontSize: "30px" }} />
-                  </div>
+
+                  {+getToken().sub == userIdFromParam ? (
+                    <div>
+                      <Link to={"/editProfile"} className="flex gap-4">
+                        <button className="bg-[#eaeaea] px-4 py-1 rounded-[6px]  sm:hidden lg:block">
+                          Edit profile
+                        </button>
+                      </Link>
+                    </div>
+                  ) : null}
                 </div>
                 <div className="flex items-center sm:gap-4 lg:gap-8 py-4">
                   <p>
-                    {posts.filter((el) => el.userId === +getToken().sub).length}
+                    {posts.filter((el) => el.userId == userIdFromParam).length}
                     &nbsp; posts
                   </p>
                   <p>12 followers</p>
                   <p>223 following</p>
                 </div>
                 <p className="lg:block sm:hidden">
-                  {users?.find((user) => user.id === +getToken().sub)?.username}
+                  {users?.find((user) => user.id == userIdFromParam)?.username}
                 </p>
 
                 <p className="text-[gray] pt-2">
-                  {users?.find((user) => user.id === +getToken().sub)?.desc}
+                  {users?.find((user) => user.id == userIdFromParam)?.desc}
                 </p>
               </div>
             </div>
@@ -106,10 +110,10 @@ const About = () => {
 
           <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-2">
             {posts.map((el) =>
-              el.userId === +getToken().sub ? (
+              el.userId == userIdFromParam ? (
                 <div>
                   <div>
-                    {el.media[0].type === "video/mp4" ? (
+                    {el.media[0].type == "video/mp4" ? (
                       <div className=" relative cursor-pointer imgg">
                         <video
                           className="w-[100%] h-[50vh]"
@@ -138,30 +142,26 @@ const About = () => {
                         }`}
                         likes={el.likedBy.length}
                         comments={el.comments.length}
+                      
                       ></ExploreGrid>
-                      // <img
-                      //   src={`${import.meta.env.VITE_APP_FILES_URL}${
-                      //     el.media[0].src
-                      //   }`}
-                      //   alt=""
-                      //   className="w-[100%] py-3 h-[55vh]"
-                      // />
                     )}
                   </div>
                 </div>
               ) : null
-            )}
+                )}
           </div>
 
+          
+
           {/* 
-          <div className="text-center py-[50px]">
-            <img src={cam} alt="" className="m-auto w-[80px]" />
-            <p className="text-[30px] font-[800] py-2">Share Photos</p>
-            <p>When you share photos, they will appear on your profile.</p>
-            <p className="pt-6 font-[600] text-[#7593ff]">
-              Share your first photo
-            </p>
-          </div> */}
+        <div className="text-center py-[50px]">
+          <img src={cam} alt="" className="m-auto w-[80px]" />
+          <p className="text-[30px] font-[800] py-2">Share Photos</p>
+          <p>When you share photos, they will appear on your profile.</p>
+          <p className="pt-6 font-[600] text-[#7593ff]">
+            Share your first photo
+          </p>
+        </div> */}
 
           <div className="py-[40px]">
             <p className="text-center text-[13px] text-[#878787]">
@@ -182,6 +182,4 @@ const About = () => {
       </div>
     </div>
   );
-};
-
-export default About;
+}

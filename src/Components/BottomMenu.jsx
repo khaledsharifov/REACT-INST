@@ -82,7 +82,7 @@ export default function BottomMenus() {
         open={open}
         onClose={handleClose}
       >
-        <Link to={"/layout/editProfile"}>
+        <Link to={"/editProfile"}>
           <MenuItem
             onClick={handleClose}
             sx={{

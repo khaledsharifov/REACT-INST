@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import phone from "../assets/phone.png";
-import googl from "../assets/googl.svg";
-import store from "../assets/store.svg";
-import google from "../assets/google.png";
-import logo2 from "../assets/logo2.png";
+import phone from "../../assets/phone.png";
+import googl from "../../assets/googl.svg";
+import store from "../../assets/store.svg";
+import google from "../../assets/google.png";
+import logo2 from "../../assets/logo2.png";
 import { TextField } from "@mui/material";
 
 import Box from "@mui/material/Box";
-import { axiosLogin, saveToken } from "../utils/axiosRequest";
+import { axiosLogin, saveToken } from "../../utils/axiosRequest";
 
 export default function Login() {
   const navigate = useNavigate();
